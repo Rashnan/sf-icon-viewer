@@ -1,80 +1,84 @@
 # SF Icons Viewer
 
-A modern web application to browse and search through SF Icons.
+Browse and search the SF Icons PNG set with fast filtering, virtualized grid, and quick copy of icon names.
 
 ## Features
 
-- 🔍 Search bar to filter icons by name
-- 📱 Responsive grid layout displaying icons with their names
-- 🔎 Click on any icon to view it in a large dialog
-- ⚡ Fast and lightweight React application
+- 🔍 Search-as-you-type with prefix filtering
+- 🖼️ Virtualized grid for thousands of icons with lazy batches
+- 🪄 Click any icon to preview in a dialog and copy its name
+- ⚡ Lightweight Vite + React app
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- npm or yarn
+- Node.js 18+
+- npm (or compatible)
 
-### Installation
+### Install
 
-1. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Generate the icon manifest (if not already generated):
+### Generate icon list
+
+Create `public/icons.txt` from the PNGs in `public/SF-Icons`:
+
 ```bash
-npm run generate-manifest
+npm run generate-icons
 ```
 
-Or on Windows PowerShell:
-```powershell
-.\scripts\generate-manifest.ps1
-```
+> This writes the list to `public/icons.txt` (and keeps a root copy). The app reads that list at runtime to render icons.
 
-### Running the Application
+### Develop
 
-Start the development server:
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+Open http://localhost:5173.
 
-### Building for Production
+### Build
 
 ```bash
 npm run build
 ```
 
-The built files will be in the `dist` folder.
+`prebuild` runs automatically to regenerate `public/icons.txt`, then Vite outputs to `dist/`.
+
+### Deploy (gh-pages)
+
+```bash
+npm run deploy
+```
+
+Runs the full build (including icon list generation) and publishes `dist/` via `gh-pages`.
 
 ## Project Structure
 
 ```
 sf-icon-viewer/
 ├── public/
-│   ├── SF-Icons/          # Icon files (PNG)
-│   └── icon-manifest.json # Generated manifest of all icons
+│   ├── SF-Icons/           # Icon files (PNG)
+│   └── icons.txt           # Generated list consumed by the app
 ├── src/
 │   ├── components/
-│   │   ├── IconGrid.jsx   # Grid display of icons
-│   │   ├── IconDialog.jsx # Dialog for viewing icons large
-│   │   └── SearchBar.jsx  # Search input component
-│   ├── App.jsx            # Main application component
-│   ├── main.jsx           # Application entry point
-│   └── *.css              # Styling files
+│   ├── context/
+│   ├── hooks/
+│   └── App.jsx
 ├── scripts/
-│   └── generate-manifest.* # Scripts to generate icon manifest
-└── package.json
+│   └── generate-icons.mjs  # Builds icons.txt
+├── package.json
+└── vite.config.js
 ```
 
 ## Usage
 
-1. Use the search bar at the top to filter icons by name
-2. Browse through the grid of icons
-3. Click on any icon to view it in a large dialog with its name
-4. Click outside the dialog or the × button to close it
+1. Type to filter by prefix (e.g., `heart`, `circle.fill`).
+2. Scroll; icons load in batches after scroll stops for 200 ms.
+3. Click an icon to view it large; nearby icons are preloaded for faster browsing.
+
 
 

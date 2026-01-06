@@ -142,7 +142,7 @@ function App() {
           </span>
           <span className="credits-separator">•</span>
           <span className="credits-text">
-            Website by <a href="https://github.com/Rashnan" target="_blank" rel="noopener noreferrer" className="credit-link">RashDev</a>
+            Website by <a href="https://github.com/Rashnan/sf-icon-viewer" target="_blank" rel="noopener noreferrer" className="credit-link">RashDev</a>
           </span>
         </div>
       </header>
