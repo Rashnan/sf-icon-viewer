@@ -1,0 +1,135 @@
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog-content {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 4rem;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 8px 32px var(--shadow);
+  transition: background-color 0.3s;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dialog-close:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.dialog-icon-container {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  background: var(--icon-bg);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.dialog-icon-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.dialog-icon-name-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dialog-icon-name-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 1.1rem;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  outline: none;
+}
+
+.dialog-icon-name-input:hover {
+  border-color: var(--accent);
+  background: var(--bg-primary);
+}
+
+.dialog-icon-name-input:focus {
+  border-color: var(--accent);
+  background: var(--bg-primary);
+}
+
+.dialog-copy-hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.dialog-icon-name-input:hover + .dialog-copy-hint,
+.dialog-icon-name-input:focus + .dialog-copy-hint {
+  opacity: 1;
+}

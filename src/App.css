@@ -1,0 +1,139 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: var(--bg-primary);
+  padding: 2rem;
+  box-shadow: 0 2px 4px var(--shadow);
+  z-index: 100;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.app-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  text-align: center;
+  flex: 1;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1rem;
+  }
+
+  .app-header-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    text-align: left;
+    flex: 1;
+    padding-right: 1rem;
+  }
+
+  .theme-toggle {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+}
+
+.app-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.results-info {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.app-credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.credits-text {
+  display: inline-flex;
+  align-items: center;
+}
+
+.credits-separator {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.credit-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s, text-decoration 0.2s;
+  margin-left: 0.25rem;
+}
+
+.credit-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+
