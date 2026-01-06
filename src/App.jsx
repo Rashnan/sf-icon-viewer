@@ -48,15 +48,18 @@ function App() {
       return icons
     }
     const query = debouncedSearchQuery.toLowerCase()
-    return icons.filter(icon =>
-      icon.name.toLowerCase().includes(query)
-    )
+    return icons.filter(icon => icon.name.toLowerCase().startsWith(query))
   }, [debouncedSearchQuery, icons])
 
   // Reset display batch when the filtered list changes
   useEffect(() => {
     setDisplayCount(Math.min(40, filteredIcons.length))
-  }, [filteredIcons.length])
+  }, [filteredIcons])
+
+  // Keep search results visible by snapping back to top when query changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [debouncedSearchQuery])
 
   const scrollIdleTimeoutRef = useRef(null)
   const BATCH_SIZE = 40
@@ -87,7 +90,7 @@ function App() {
         clearTimeout(scrollIdleTimeoutRef.current)
       }
     }
-  }, [filteredIcons.length])
+  }, [filteredIcons])
 
   const preloadedSrcsRef = useRef(new Set())
 
