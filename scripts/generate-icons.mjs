@@ -6,7 +6,10 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const iconsDir = path.join(__dirname, '..', 'public', 'SF-Icons')
-const outputPath = path.join(__dirname, '..', 'icons.txt')
+const outputPaths = [
+  path.join(__dirname, '..', 'public', 'icons.txt'), // served by Vite in dev/build
+  path.join(__dirname, '..', 'icons.txt'), // keep root copy for convenience
+]
 
 try {
   const dirEntries = fs.readdirSync(iconsDir, { withFileTypes: true })
@@ -15,8 +18,10 @@ try {
     .map(entry => entry.name)
     .sort()
 
-  fs.writeFileSync(outputPath, iconFiles.join('\n'), 'utf8')
-  console.log(`Wrote ${iconFiles.length} icons to icons.txt`)
+  outputPaths.forEach(outPath => {
+    fs.writeFileSync(outPath, iconFiles.join('\n'), 'utf8')
+  })
+  console.log(`Wrote ${iconFiles.length} icons to:`, outputPaths.map(p => path.relative(process.cwd(), p)).join(', '))
 } catch (error) {
   console.error('Error generating icons.txt:', error)
   process.exit(1)
