@@ -18,7 +18,7 @@ function App() {
 
   // Load icons using the existing icons.txt list in /public
   useEffect(() => {
-    fetch('/icons.txt')
+    fetch(`${import.meta.env.BASE_URL}icons.txt`)
       .then(res => {
         if (!res.ok) throw new Error(`Failed to load icons.txt: ${res.status}`)
         return res.text()
