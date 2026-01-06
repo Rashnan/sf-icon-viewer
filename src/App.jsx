@@ -32,7 +32,7 @@ function App() {
         const iconList = iconNames.map(name => ({
           name: name.replace('@10x.png', '').replace('.png', ''),
           filename: name,
-          path: `/SF-Icons/${name}` // Icons live in public/SF-Icons
+          path: `${import.meta.env.BASE_URL}SF-Icons/${name}` // Icons live in public/SF-Icons
         }))
 
         setIcons(iconList)
